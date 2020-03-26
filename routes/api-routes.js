@@ -1,11 +1,22 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+var passport_jwt = require("../config/passport_jwt").passport;
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
+  app.post("/api/test", passport_jwt.authenticate('login', { session: false }), (req,res) =>{
+    res.json({user: req.body.user })
+  })
+
+  app.post("/one/two", (req,res)=>{
+    res.json({success:true})
+  })
+  app.post("/api/test/signup", passport_jwt.authenticate('signup', { session: false }), (req,res) =>{
+    res.json({user: req.body.user })
+  })
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
