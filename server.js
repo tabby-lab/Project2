@@ -1,31 +1,32 @@
-// Requiring necessary npm packages
-var express = require("express");
-var session = require("express-session");
-const bodyParser = require("body-parser");
-// Requiring passport as we've configured it
-var passport = require("./config/passport");
-// Setting up port and requiring models for syncing
-var PORT = process.env.PORT || 3000;
-var db = require("./models");
-// Creating express app and configuring middleware needed for authentication
-var app = express();
-app.use(express.json());
-app.use(express.static("public"));
-app.use(bodyParser.json({extended:true}))
-app.use(bodyParser.urlencoded({extended:true}))
-// We need to use sessions to keep track of our user's login status
-app.use(
-  session({
-    secret: "keyboard cat",
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
+const express = require('express');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const app = express();
+const db  = require("./models")
+const UserModel = require('./models/user');
+const PORT = process.env.PORT || 3000;
+require('./config/passport_jwt.js');
 
-// Requiring our routes
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
+const routes = require('./routes/routes.js');
+const secureRoute = require('./routes/api-routes.js');
+
+app.use('/', routes);
+//We plugin our jwt strategy as a middleware so only verified users can access this route
+app.use('/user', passport.authenticate('jwt', {
+    session: false
+}), secureRoute);
+
+//Handle errors
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.json({
+        error: err
+    });
+});
 
 
 // Syncing our database and logging a message to the user upon succes
