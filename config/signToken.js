@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
-/*
+
+  /*
     Calvin's note
 
     There's a ton of stuff you can put in the jwt. Here's their documentation on what's recommended to store in the JWT. They call it registered claims. Think of claim as something you can use within the jwt to better identify or restrict the token.
@@ -16,16 +17,15 @@ const jwt = require("jsonwebtoken");
 
       Tabby we'll only use 3 claims, 1) issuer 2) subject 3) audience
   */
-
-  const signToken = (user) => {
-      return jwt.sign(
-        {
-          iss: "Project2",
-          sub: user.id,
-          aud: user.email
+ const signToken = (user) => {
+    return jwt.sign(
+      {
+        iss: "project_2_app", // Has to be the same as what passport is using to decrypt token
+        sub: user.id, // I dont think is really needed to store user id here but figured i keep it aligned with what JWT.io says in their documentaion.
+        aud: user.email
       },
-      "my_secret_jwt"
-      );
+      process.env.jwt_secret
+    );
   };
 
   module.exports = signToken;

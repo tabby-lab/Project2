@@ -1,33 +1,44 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const app = express();
-const db  = require("./models")
-const UserModel = require('./models/user');
-const PORT = process.env.PORT || 3000;
-require('./config/passport_jwt.js');
+// Requiring necessary npm packages
+require('dotenv').config();
+var express = require("express");
+const cookieParser = require("cookie-parser");
 
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+// Calvin's note. Since we are using JWT we have to reomove all references to session. 
+// var session = require("express-session");
 
-const routes = require('./routes/routes.js');
-const secureRoute = require('./routes/api-routes.js');
+// Requiring passport as we've configured it
+var passport = require("./config/passport");
 
-app.use('/', routes);
-//We plugin our jwt strategy as a middleware so only verified users can access this route
-app.use('/user', passport.authenticate('jwt', {
-    session: false
-}), secureRoute);
+// Setting up port and requiring models for syncing
+var PORT = process.env.PORT || 3000;
+var db = require("./models");
 
-//Handle errors
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500);
-    res.json({
-        error: err
-    });
-});
+// Creating express app and configuring middleware needed for authentication
+var app = express();
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.static("public"));
 
+// Calvin's note. Since we are using JWT we have to reomove all references to session. 
+// app.use(
+//   session({
+//     secret: "keyboard cat",
+//   })
+// );
+
+app.use(passport.initialize());
+
+// Calvin's note. Since we are using JWT we have to reomove all references to session. 
+// app.use(passport.session());
+
+// Requiring our routes
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
 // Syncing our database and logging a message to the user upon succes
 db.sequelize.sync({ force: false }).then(function () {
