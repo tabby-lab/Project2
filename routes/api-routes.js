@@ -1,16 +1,19 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
+var signToken = require("../config/signToken");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
-  app.post("/api/login", passport.authenticate("local"), function (req, res) {
-    // Sending back a password, even a hashed password, isn't a good idea
+  app.post("/api/login", passport.authenticate("local", {session: false}), function (req, res) {
+    var token = signToken(req.user);
+    console.log("Tabby's token", token);
+    res.cookie("jwt", token);
     res.json({
-      email: req.user.email,
-      id: req.user.id,
+      token: token
     });
   });
 
@@ -34,11 +37,12 @@ module.exports = function (app) {
   // Route for logging user out
   app.get("/logout", function (req, res) {
     req.logout();
+    res.clearCookie("jwt");
     res.redirect("/");
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function (req, res) {
+  app.get("/api/user_data", isAuthenticated, function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});

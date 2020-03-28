@@ -1,6 +1,11 @@
 // Requiring necessary npm packages
+require('dotenv').config();
 var express = require("express");
-var session = require("express-session");
+const cookieParser = require("cookie-parser");
+
+// Calvin's note. Since we are using JWT we have to reomove all references to session. 
+// var session = require("express-session");
+
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 
@@ -15,17 +20,21 @@ app.use(
     extended: true,
   })
 );
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.static("public"));
 
-// We need to use sessions to keep track of our user's login status
-app.use(
-  session({
-    secret: "keyboard cat",
-  })
-);
+// Calvin's note. Since we are using JWT we have to reomove all references to session. 
+// app.use(
+//   session({
+//     secret: "keyboard cat",
+//   })
+// );
+
 app.use(passport.initialize());
-app.use(passport.session());
+
+// Calvin's note. Since we are using JWT we have to reomove all references to session. 
+// app.use(passport.session());
 
 // Requiring our routes
 require("./routes/html-routes.js")(app);
