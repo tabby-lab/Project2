@@ -1,5 +1,7 @@
 var passport = require("passport");
 var LocalStrategy = require("passport-local").Strategy;
+const JWTStrategy = require("passport-jwt").Strategy;
+const ExtractJwt = require("passport-jwt").ExtractJwt;
 
 var db = require("../models");
 
@@ -62,6 +64,52 @@ passport.deserializeUser(function (user, cb) {
       cb(error, false);
     });
 });
+
+
+// Calvin's note we will use JWT Passport to extract the tokens as they come in from user requests
+// In my demo I was saying you can read the request header Authorization property to see JWT. But I recall you were trying to use the it in the body. The line below does that and this is what passport has also provided in their documentation. http://www.passportjs.org/packages/passport-jwt/
+
+// "fromBodyField(field_name)"" creates a new extractor that looks for the JWT in the given body field. You must have a body parser configured in order to use this method.
+const opts = {}
+
+// opts.jwtFromRequest = ExtractJwt.fromBodyField("jwt_token");
+
+// ^^^ on second thought I had this but ran into some problems of navigating user through the site.
+// placing it only in the body means the user has to make a request and send in body, but what if they
+// just click on a tag link? They are not sending the JWT in the body which means we need another form of
+// reading the JWT. From my demo the other day I mentioned cookies is a good solution so I wrote my own
+// custom method to do this. Which its using the cookies and also reading the body of the request as 2nd option
+opts.jwtFromRequest = function(req) {
+  console.log(req.body);
+  if (req && req.body && req.body.jwt_token) { 
+      return req.body.jwt_token;
+  } else if (req && req.cookies) {
+      return req.cookies.jwt;
+  }
+  return null;
+};
+opts.secretOrKey = process.env.jwt_secret;
+opts.issuer = "project_2_app";
+passport.use(new JWTStrategy(opts, (payload, done) => {
+    // Find the user specified in token
+    db.User.findOne({
+      where: {
+        email: payload.aud, // aud stands for "audience" and is the property we are using to store email from the token
+      },
+    })
+    .then(function (dbUser) {
+      // If user doesn't exist, INVALIDATE
+      if(!dbUser) {
+        return done(null, false);
+      }
+
+      // Otherwise, return the user
+      done(null, dbUser);
+
+    }).catch(function(error) {
+      done(error, false, error.message);
+    });
+}));
 
 // Exporting our configured passport
 module.exports = passport;
