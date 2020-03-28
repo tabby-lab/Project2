@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Packer</title>
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/61e46721ec.js" crossorigin="anonymous"></script>
+    <!-- My CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-md-center" id="title">
+            <h1>Budget Packer ✈️</h1>
+        </div>
+    </div>
+    <form class="container-fluid" id="inputElements">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                     <label class="input-group-text alert-success" for="budgetInput"><i class="fas fa-money-bill-wave"></i></label>
+                    </div>
+                    <select class="custom-select" id="budgetInput" name="budgetInput">
+                        <option selected></option>
+                        <option value="1">$</option>
+                        <option value="2">$$</option>
+                        <option value="3">$$$</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text alert-success" id="city"><i class="fas fa-map-marker-alt"></i></span>
+                    </div>
+                    <input type="text" id="cityInput" class="form-control" placeholder="Where to?" aria-label="city" aria-describedby="city" name="cityInput">
+                  </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text alert-success" id="arrival"><i class="fas fa-plane-arrival"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="arrivalInput" placeholder="arrival" aria-label="arrival" aria-describedby="arrival" name="arrivalInput">
+                  </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text alert-success" id="departure"><i class="fas fa-plane-departure"></i></span>
+                    </div>
+                    <input type="text" class="form-control" id="departureInput" placeholder="Departure" aria-label="departure" aria-describedby="departure" name="departureInput">
+                  </div>
+            </div>
+            <div class="container-fluid">
+                <div class="d-flex justify-content-center">
+                    <div class="col-md-12" id="submitBlock">
+                        <button id="submit" type="button" class="btn btn-lg btn-block">Create the Adventure!</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </form>
+    <div class="row justify-content-md-center">
+        <div id="loading">
+            <!-- <div class="spinner-border text-primary" style="width: 7rem; height: 7rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div> -->
+            <div class="spinner-grow text-success" role="status" id="load1">
+                <span class="sr-only">Loading...</span>
+              </div>
+            <div class="spinner-grow text-success" role="status" id="load2">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <div class="spinner-grow text-success" role="status" id="load3">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="js/client.js"></script>
+</body>
+</html>
