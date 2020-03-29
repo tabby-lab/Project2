@@ -24,7 +24,24 @@ $( document ).ready(function() {
             departure
         };
         console.log(trip);
+        getCards(trip)
 
     
     })
+
+    function getCards(budget, city, arrival, departure){
+        $.post("/api/members", {
+            budget: budget,
+            city: city,
+            arrival: arrival,
+            departure: departure
+          })
+            .then(function () {
+              window.location.replace("/members");
+              // If there's an error, log the error
+            })
+            .catch(function (err) {
+              console.log(err);
+            });
+    }
 });

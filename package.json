@@ -15,10 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "2.4.3",
-<<<<<<< HEAD
-=======
     "cookie-parser": "^1.4.5",
->>>>>>> 01060c90d34bfc36f9e4de7337e2f2c5abc9ce03
     "dotenv": "^8.2.0",
     "express": "^4.17.0",
     "jsonwebtoken": "^8.5.1",
