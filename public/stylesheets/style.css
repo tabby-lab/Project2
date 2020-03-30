@@ -2,3 +2,16 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+
+.main-card {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+  margin-top: 15%;
+  
+}
+
+.membersBody{
+  background-image: url("../image.jpg");
+}

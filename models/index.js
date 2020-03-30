@@ -8,6 +8,13 @@ var env       = process.env.NODE_ENV || 'development';
 var config    = require(__dirname + '/../config/config.js')[env];
 var db        = {};
 
+// const Handlebars = require("handlebars");
+// const template = Handlebars.compile("Name: {{name}}");
+// var source = document.getElementById("entry-template").innerHTML;
+// var template = Handlebars.compile(source);
+// var context = { title: "My New Post", body: "This is my first post!" };
+// var html = template(context);
+
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
 } else {
