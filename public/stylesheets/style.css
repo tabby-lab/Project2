@@ -3,15 +3,26 @@ form.login {
   margin-top: 50px;
 }
 
-.main-card {
-  margin: auto;
-  width: 50%;
-  border: 3px solid green;
-  padding: 10px;
-  margin-top: 15%;
-  
+body{
+  background-image: image("backpacker.jpg");
 }
 
-.membersBody{
-  background-image: url("../image.jpg");
+nav{
+  background-color:rgb(32, 44, 32);
+}
+
+.btn-large{
+  background-color:rgb(32, 44, 32);
+}
+
+.img{
+  background-image: url('../backpacker.jpg'); 
+  /* height:10px;
+  min-height: 500px;
+  width: 10x;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size: 300px 100px;
+  justify-content: center; */
 }
