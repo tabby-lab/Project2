@@ -3,12 +3,14 @@ var db = require("../models");
 var passport = require("../config/passport");
 var signToken = require("../config/signToken");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
+const axios = require("axios");
+
 
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
-  app.post("/api/login", passport.authenticate("local", {session: false}), function (req, res) {
+  app.post("/api/login", passport.authenticate("local", { session: false }), function (req, res) {
     var token = signToken(req.user);
     console.log("Tabby's token", token);
     res.cookie("jwt", token);
@@ -16,6 +18,14 @@ module.exports = function (app) {
       token: token
     });
   });
+
+  app.post("/api/triposo", (req, res) => {
+    const trip = req.body;
+    axios.get(`https://www.triposo.com/api/20190906/day_planner.json?location_id=${trip.city}&account=37RBWIEK&token=82n4g05dnhk3ubu1wivs3yv7940kz28l&start_date=${trip.arrival}&end_date=${trip.departure}`).then(result => {
+      res.json({ data: results })
+      //res.render("itinerary", { data: results })
+    })
+  })
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,

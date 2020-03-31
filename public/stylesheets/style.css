@@ -3,9 +3,7 @@ form.login {
   margin-top: 50px;
 }
 
-body{
-  background-image: image("backpacker.jpg");
-}
+
 
 nav{
   background-color:rgb(32, 44, 32);
@@ -15,6 +13,9 @@ nav{
   background-color:rgb(32, 44, 32);
 }
 
+.container-two{
+  background-image: url('../water.jpg');
+}
 .img{
   background-image: url('../backpacker.jpg'); 
   /* height:10px;

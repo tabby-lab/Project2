@@ -28,12 +28,12 @@ module.exports = function (app) {
   });
 
 
-app.get("/", function(req, res){
-  res.render("home")
-})
+  app.get("/", function (req, res) {
+    res.render("home")
+  })
 
-app.get("/itinerary", function(res,res){
-  res.render("itinerary")
-})
+  app.get("/itinerary", function (res, res) {
+    res.render("itinerary")
+  })
 
 };
