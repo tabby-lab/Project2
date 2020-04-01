@@ -21,4 +21,10 @@ body {
     width: 50vw;
     
 }
+
+.card-content{
+    height:20px;
+    width:20px;
+    background-color: blue;
+}
 /* color scheme  c8f4de  a4e5d9  66c6ba  649dad  */
