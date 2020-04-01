@@ -23,8 +23,23 @@ $( document ).ready(function() {
             arrival,
             departure
         };
+<<<<<<< HEAD
         console.log(trip);
         getCards(trip)
+=======
+        var settings = {
+            "url": "https://www.triposo.com/api/20190906/day_planner.json?location_id=" + trip.city + "&account=37RBWIEK&token=82n4g05dnhk3ubu1wivs3yv7940kz28l&start_date=" + trip.arrival + "&end_date=" + trip.departure,
+            "method": "GET",
+            "timeout": 0,
+          };
+          
+          $.ajax(settings).done(function (response) {
+            console.log(trip);
+            console.log(response);
+          });
+        
+
+>>>>>>> d95f5414060729f5478baebda71486c890bef309
 
     
     })
