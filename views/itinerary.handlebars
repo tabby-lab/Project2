@@ -1,25 +1,27 @@
 <div class="container-two">
     <div class="row">
         <div class="col">
+            {{#each data}}
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="images/office.jpg">
+                    <img class="activator" src="./water.jpg">
                 </div>
                 <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">Card Title<i
+                    <span class="card-title activator grey-text text-darken-4">{{this.id}}<i
                             class="material-icons right">more_vert</i></span>
-                    <p><a href="#">This is a link</a></p>
+                   
+                    {{#each this.itinerary}}
+                     <p>{{this}}</p>
+                     {{/each}}
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">Card Title<i
                             class="material-icons right">close</i></span>
-                    <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                    <p>{{this.hotel_info}}</p>
                 </div>
             </div>
-            {{#each data}}
-            <p>{data}</p>
             {{/each}}
-
+             
         </div>
     </div>
 </div>

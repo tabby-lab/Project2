@@ -14,7 +14,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2",
     "bcryptjs": "2.4.3",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -22,10 +21,13 @@
     "express-handlebars": "^4.0.0",
     "handlebars": "^4.7.3",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
     "mysql2": "^1.6.5",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
     "sequelize": "^5.8.6"
   },
   "devDependencies": {

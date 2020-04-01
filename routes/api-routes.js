@@ -1,9 +1,12 @@
 // Requiring our models and passport as we've configured it
+require("dotenv").config();
 var db = require("../models");
+const rp = require("request-promise");
 var passport = require("../config/passport");
 var signToken = require("../config/signToken");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
-const axios = require("axios");
+
+
 
 
 module.exports = function (app) {
@@ -19,12 +22,8 @@ module.exports = function (app) {
     });
   });
 
-  app.post("/api/triposo", (req, res) => {
-    const trip = req.body;
-    axios.get(`https://www.triposo.com/api/20190906/day_planner.json?location_id=${trip.city}&account=37RBWIEK&token=82n4g05dnhk3ubu1wivs3yv7940kz28l&start_date=${trip.arrival}&end_date=${trip.departure}`).then(result => {
-      res.json({ data: results })
-      //res.render("itinerary", { data: results })
-    })
+  app.get("/mytrip/results", (req, res) => {
+
   })
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -65,4 +64,9 @@ module.exports = function (app) {
       });
     }
   });
+ 
+  app.post("/itinerary", function (req, res) {
+
+  })
 };
+

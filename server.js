@@ -23,7 +23,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.static("public"));
-app.engine("handlebars", expressHandlebars({defaultLayout:"main"}));
+app.engine("handlebars", expressHandlebars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars")
 // Calvin's note. Since we are using JWT we have to reomove all references to session. 
 // app.use(
