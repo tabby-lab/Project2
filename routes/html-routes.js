@@ -42,7 +42,8 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/login.html"));
     //res.render("home")
     if(req.user){
-      res.render("home");
+      res.render("/members");
+      res.sendFile(path.join(__dirname, "../public/login.html"))
     }
   })
 
@@ -67,42 +68,54 @@ module.exports = function (app) {
       }
     };
     rp(options).then(result => {
-      const trips = JSON.parse(result).results[0]
-      console.log(trips)
-
+      const trips = JSON.parse(result).results[0];
       const days = [];
+      console.log(trips);
+
       trips.days.forEach(function(day) {
-          const date = [];
+          //console.log(day);
           const id = trips.location.id;
           const itinerary = [];
           const titles = [];
+          // const dates = [];
           day.itinerary_items.forEach(function(item) {
-            console.log(item)
-               itinerary.push(item.title+ " " + item.description);
+              //console.log(item);
+              // itinerary.push(`${item.title} ${item.description}`);
+              itinerary.push(item.title + "- " + item.description);
+              
 
           });
-          // trying to add the date to each card
-          day.date.forEach(function(i) {
-            date.push(i.date)
-          });
           day.itinerary_items.forEach(function(event) {
+
+            // console.log(event.title);
             titles.push(event.title);
-          });
-          const hotel_info = "Hotel Dracula";
+            });
+
+          // const apiDates = day.dates
+
+          // tried to push dates
+            // for (i = 0; i < apiDates.length; i++)  {
+            //   dates.push(date[i]);
+            // }
+            
+          // day.date.forEach(function(item) {
+
+          //   console.log(item.date);
+          //   dates.push(item.date);
+          // });
+
+          const hotel_info = `${trips.location.country_id}`;
           days.push({
               id,
-              date,
               itinerary,
-              hotel_info
+              hotel_info,
+              titles,
+              // dates,
           });
       });
       res.render("itinerary", { data: days});
-
-      
-      
-    })
-   })
-
-  
-
+    });
+   });
 };
+
+
