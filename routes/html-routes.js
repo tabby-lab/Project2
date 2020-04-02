@@ -26,37 +26,25 @@ module.exports = function (app) {
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/index", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
-  });
-
-  app.get("/members", function (req, res){
-    if(req.user){
-      res.render("home");
-    }
+  app.get("/members", isAuthenticated, function (req, res) {
     res.render("home");
   });
 
 
   app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/login.html"));
-    //res.render("home")
-    if(req.user){
-      res.render("home");
+    if (req.user) {
+      res.redirect("/members");
     }
-  })
-
-  app.get("/home", isAuthenticated, function (req, res) {
-    res.render("home")
+    res.sendFile(path.join(__dirname, "../public/login.html"));
   })
 
   app.get("/itinerary", function(req,res){
-    console.log(req.query)
+    console.log(req.query);
   
     const arrival =  moment(new Date(req.query.arrival)).format("YYYY-MM-DD").toString();
     const departure = moment(new Date(req.query.departure)).format("YYYY-MM-DD").toString();
-    console.log(arrival)
-    console.log(departure)
+    console.log(arrival);
+    console.log(departure);
 
     var options = {
       'method': 'GET',
@@ -66,19 +54,21 @@ module.exports = function (app) {
         'X-Triposo-Token': process.env.API_KEY
       }
     };
-    rp(options).then(result => {
-      const trips = JSON.parse(result).results[0]
-      console.log(trips)
 
+    rp(options).then(result => {
+      const trips = JSON.parse(result).results[0];
       const days = [];
+      console.log(trips);
+
       trips.days.forEach(function(day) {
+          //console.log(day);
           const id = trips.location.id;
           const itinerary = [];
           day.itinerary_items.forEach(function(item) {
-            console.log(item)
-               itinerary.push(item.title+ " " + item.description);
+              //console.log(item);
+              itinerary.push(`${item.title}: ${item.description}`);
           });
-          const hotel_info = "Hotel Dracula";
+          const hotel_info = `${trips.location.country_id}`;
           days.push({
               id,
               itinerary,
@@ -86,12 +76,6 @@ module.exports = function (app) {
           });
       });
       res.render("itinerary", { data: days});
-
-      
-      
-    })
-   })
-
-  
-
+    });
+   });
 };

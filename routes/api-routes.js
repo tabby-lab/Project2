@@ -6,9 +6,6 @@ var passport = require("../config/passport");
 var signToken = require("../config/signToken");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
-
-
-
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -20,6 +17,10 @@ module.exports = function (app) {
     res.json({
       token: token
     });
+  });
+
+  app.get("/mytrip/results", (req, res) => {
+
   });
 
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
@@ -60,5 +61,11 @@ module.exports = function (app) {
       });
     }
   });
+ 
+  // app.post("/api/itinerary", function (req, res) {
+  //   db.Inventory.create(req.body).then(function(data){
+  //     res.json(data)
+  //   })
+  // });
 };
 

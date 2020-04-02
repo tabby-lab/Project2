@@ -1,24 +1,37 @@
-#title {
-    padding: 50px;
+form.signup,
+form.login {
+  margin-top: 50px;
 }
-body {
-    background-color: #c8f4de;
-    /* background-image: url("/img/bg-img.jpg"); */
-}
-
-#submit {
-    background-color: #66c6ba;
+nav{
+  background-color:rgb(32, 44, 32);
+  padding: 20px;
 }
 
-#submitBlock {
-    padding: 10px;
+.btn-large{
+  background-color:rgb(32, 44, 32);
 }
-
+.container-two{
+  background-image: url('../water.jpg');
+}
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+}
+.parallax
 .parallax-container{
-    background-image: url("backpacker.jpg");
-    background-size: auto;
-    height:300px;
-    width: 50vw;
-    
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
 }
-/* color scheme  c8f4de  a4e5d9  66c6ba  649dad  */
+.parallax img
+.parallax-container{
+  position: absolute;
+    left: 50%;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
