@@ -72,15 +72,26 @@ module.exports = function (app) {
 
       const days = [];
       trips.days.forEach(function(day) {
+          const date = [];
           const id = trips.location.id;
           const itinerary = [];
+          const titles = [];
           day.itinerary_items.forEach(function(item) {
             console.log(item)
                itinerary.push(item.title+ " " + item.description);
+
+          });
+          // trying to add the date to each card
+          day.date.forEach(function(i) {
+            date.push(i.date)
+          });
+          day.itinerary_items.forEach(function(event) {
+            titles.push(event.title);
           });
           const hotel_info = "Hotel Dracula";
           days.push({
               id,
+              date,
               itinerary,
               hotel_info
           });
