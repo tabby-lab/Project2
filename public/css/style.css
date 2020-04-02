@@ -1,0 +1,40 @@
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+
+
+nav{
+  background-color:rgb(32, 44, 32);
+}
+
+.btn-large{
+  background-color:rgb(32, 44, 32);
+}
+
+.container-two{
+  background-image: url('/water.jpg');
+
+}
+.img{
+  background-image: url('../backpacker.jpg'); 
+  /* height:10px;
+  min-height: 500px;
+  width: 10x;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size: 300px 100px;
+  justify-content: center; */
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:rgb(32, 44, 32);
+  color: white;
+  text-align: center;
+}

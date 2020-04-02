@@ -65,8 +65,10 @@ module.exports = function (app) {
     }
   });
  
-  app.post("/itinerary", function (req, res) {
-
+  app.post("/api/itinerary", function (req, res) {
+        db.Inventory.create(req.body).then(function(data){
+          res.json(data)
+        })
   })
 };
 
