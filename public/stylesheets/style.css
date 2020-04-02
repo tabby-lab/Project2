@@ -16,14 +16,26 @@ nav{
 .container-two{
   background-image: url('../water.jpg');
 }
-.img{
-  background-image: url('../backpacker.jpg'); 
-  /* height:10px;
-  min-height: 500px;
-  width: 10x;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center; 
-  background-size: 300px 100px;
-  justify-content: center; */
+.parallax-container {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+}
+.parallax
+.parallax-container{
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+
+} 
+.parallax img 
+.parallax-container{
+  position: absolute;
+    left: 50%;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
