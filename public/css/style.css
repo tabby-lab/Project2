@@ -13,4 +13,12 @@ body {
 #submitBlock {
     padding: 10px;
 }
+
+.parallax-container{
+    background-image: url("backpacker.jpg");
+    background-size: auto;
+    height:300px;
+    width: 50vw;
+    
+}
 /* color scheme  c8f4de  a4e5d9  66c6ba  649dad  */
