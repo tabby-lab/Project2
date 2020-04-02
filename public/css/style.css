@@ -1,30 +1,40 @@
-#title {
-    padding: 50px;
-}
-body {
-    background-color: #c8f4de;
-    /* background-image: url("/img/bg-img.jpg"); */
+form.signup,
+form.login {
+  margin-top: 50px;
 }
 
-#submit {
-    background-color: #66c6ba;
+
+
+nav{
+  background-color:rgb(32, 44, 32);
 }
 
-#submitBlock {
-    padding: 10px;
+.btn-large{
+  background-color:rgb(32, 44, 32);
 }
 
-.parallax-container{
-    background-image: url("backpacker.jpg");
-    background-size: auto;
-    height:300px;
-    width: 50vw;
-    
+.container-two{
+  background-image: url('/water.jpg');
+
+}
+.img{
+  background-image: url('../backpacker.jpg'); 
+  /* height:10px;
+  min-height: 500px;
+  width: 10x;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+  background-size: 300px 100px;
+  justify-content: center; */
 }
 
-.card-content{
-    height:20px;
-    width:20px;
-    background-color: blue;
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:rgb(32, 44, 32);
+  color: white;
+  text-align: center;
 }
-/* color scheme  c8f4de  a4e5d9  66c6ba  649dad  */

@@ -15,14 +15,17 @@ $(document).ready(function () {
     console.log("click");
     event.preventDefault();
     $("#inputElements").hide();
-
-    const formData = new FormData(form);
-    const budget = formData.get("budgetInput");
-    const city = formData.get("cityInput");
-    const arrival = $("#from_date").val();
-    const departure = $("#to_date").val();
+    const userData={}
+     
+    userData.budget =  $("#budgetInput").val()
+    userData.city = $("#cityInput").val();
+    userData.arrival = $("#from_date").val();
+    userData.departure = $("#to_date").val();
     
-    location.replace(`/itinerary?budget=${budget}&city=${city}&arrival=${arrival}&departure=${departure}`);
+    $.post("/api/inventory", userData).then(function(data){
+      location.replace(`/itinerary?budget=${budget}&city=${city}&arrival=${arrival}&departure=${departure}`);
+    })
+    
   //   const trip = {
   //     budget,
   //     city,

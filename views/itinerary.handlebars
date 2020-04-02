@@ -1,28 +1,38 @@
 <div class="container-two">
     <div class="row">
-        <div class="col">
-            {{#each data}}
-            <div class="card">
+        {{#each data}}
+        <div class="col s4" >
+
+            <div class="card" style="height:50vh">
                 <div class="card-image waves-effect waves-block waves-light">
-                    
+                   
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">{{this.id}}<i
                             class="material-icons right">more_vert</i></span>
-                   
-                    {{#each this.itinerary}}
-                     <p>{{this}}</p>
-                     {{/each}}
+
+                    
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4">Card Title<i
                             class="material-icons right">close</i></span>
                     <p>{{this.hotel_info}}</p>
+                    {{#each this.itinerary}}
+                    <p>{{this}}</p>
+                    {{/each}}
                 </div>
             </div>
-            {{/each}}
-             
+
+
         </div>
+        {{/each}}
     </div>
+
+   </div>
+
+
+   <div class="footer">
+  <p>Copyright  &copy; Project 2</p>
 </div>
-</div>
+   
+
