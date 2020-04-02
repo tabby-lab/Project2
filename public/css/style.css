@@ -2,9 +2,11 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
+body{
+  background-color: transparent;
+}
 nav{
   background-color:rgb(32, 44, 32);
-  padding: 20px;
 }
 
 .btn-large{
@@ -16,7 +18,8 @@ nav{
 .parallax-container {
   position: relative;
   overflow: hidden;
-  height: 500px;
+  height: 50vh;
+  width:100vw;
 }
 .parallax
 .parallax-container{
