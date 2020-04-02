@@ -1,20 +1,16 @@
 $(document).ready(function () {
-
   //Mateiralize specific methods for the forms
   $('.sidenav').sidenav();
   $('select').formSelect();
   $('.datepicker').datepicker();
   $('.parallax').parallax();
-
   const form = document.querySelector("form");
-
   $("#loading").hide();
-
-
   $("#submit").click(function (event) {
     console.log("click");
     event.preventDefault();
     $("#inputElements").hide();
+<<<<<<< HEAD
     const userData={}
      
     userData.budget =  $("#budgetInput").val()
@@ -45,5 +41,13 @@ $(document).ready(function () {
   //     console.log(response)
       
   //   });
+=======
+    const formData = new FormData(form);
+    const budget = formData.get("budgetInput");
+    const city = formData.get("cityInput");
+    const arrival = $("#from_date").val();
+    const departure = $("#to_date").val();
+    location.replace(`/itinerary?budget=${budget}&city=${city}&arrival=${arrival}&departure=${departure}`);
+>>>>>>> 411ba4a3c6064226b10b1e57268f7894d9cc4da3
    })
 });

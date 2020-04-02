@@ -22,10 +22,6 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/mytrip/results", (req, res) => {
-
-  })
-
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -64,11 +60,14 @@ module.exports = function (app) {
       });
     }
   });
+<<<<<<< HEAD
  
   app.post("/api/itinerary", function (req, res) {
         db.Inventory.create(req.body).then(function(data){
           res.json(data)
         })
   })
+=======
+>>>>>>> 411ba4a3c6064226b10b1e57268f7894d9cc4da3
 };
 
