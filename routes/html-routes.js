@@ -26,12 +26,27 @@ module.exports = function (app) {
 
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
+  app.get("/index", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+  });
+
+  app.get("/members", function (req, res){
+    if(req.user){
+      res.render("home");
+    }
+    res.render("home");
   });
 
 
   app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+    //res.render("home")
+    if(req.user){
+      res.render("home");
+    }
+  })
+
+  app.get("/home", isAuthenticated, function (req, res) {
     res.render("home")
   })
 
@@ -39,9 +54,9 @@ module.exports = function (app) {
     console.log(req.query)
   
     const arrival =  moment(new Date(req.query.arrival)).format("YYYY-MM-DD").toString();
-const departure = moment(new Date(req.query.departure)).format("YYYY-MM-DD").toString();
-console.log(arrival)
-console.log(departure)
+    const departure = moment(new Date(req.query.departure)).format("YYYY-MM-DD").toString();
+    console.log(arrival)
+    console.log(departure)
 
     var options = {
       'method': 'GET',
