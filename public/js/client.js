@@ -1,41 +1,27 @@
-$( document ).ready(function() {
+$(document).ready(function () {
 
-    const form = document.querySelector("form");
+  //Mateiralize specific methods for the forms
+  $('.sidenav').sidenav();
+  $('select').formSelect();
+  $('.datepicker').datepicker();
+  $('.parallax').parallax();
 
-    $("#loading").hide();
+  const form = document.querySelector("form");
 
-
-    $("#submit").click( function() {
-        console.log("click");
-        $("#inputElements").hide();
-        $("#loading").show();
-
-        const formData = new FormData(form);
-
-        const budget = formData.get("budgetInput");
-        const city = formData.get("cityInput");
-        const arrival = formData.get("arrivalInput");
-        const departure = formData.get("departureInput");
-
-        const trip = {
-            budget,
-            city,
-            arrival,
-            departure
-        };
-        var settings = {
-            "url": "https://www.triposo.com/api/20190906/day_planner.json?location_id=" + trip.city + "&account=37RBWIEK&token=82n4g05dnhk3ubu1wivs3yv7940kz28l&start_date=" + trip.arrival + "&end_date=" + trip.departure,
-            "method": "GET",
-            "timeout": 0,
-          };
-          
-          $.ajax(settings).done(function (response) {
-            console.log(trip);
-            console.log(response);
-          });
-        
+  $("#loading").hide();
 
 
+  $("#submit").click(function (event) {
+    console.log("click");
+    event.preventDefault();
+    $("#inputElements").hide();
+     
+    const budget =  $("#budgetInput").val()
+    const city = $("#cityInput").val();
+    const arrival = $("#from_date").val();
+    const departure = $("#to_date").val();
     
-    })
+    location.replace(`/itinerary?budget=${budget}&city=${city}&arrival=${arrival}&departure=${departure}`);
+
+   })
 });
